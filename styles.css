@@ -1,0 +1,689 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #006b9e;
+    --secondary-color: #ff6b6b;
+    --accent-color: #ffd93d;
+    --text-color: #333;
+    --light-bg: #f7f7f7;
+    --white: #ffffff;
+    --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--white);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* 導航欄 */
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #004d6d 100%);
+    color: var(--white);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+}
+
+.nav-link {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--accent-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background: var(--white);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* 首頁主視覺 */
+.hero {
+    background: linear-gradient(135deg, #006b9e 0%, #0099cc 50%, #00ccff 100%);
+    color: var(--white);
+    padding: 150px 20px;
+    text-align: center;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.hero-content h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    animation: slideInDown 0.8s ease;
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 30px;
+    opacity: 0.95;
+    animation: slideInUp 0.8s ease 0.2s backwards;
+}
+
+.cta-button {
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1em;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideInUp 0.8s ease 0.4s backwards;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: #f9c74f;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 通用區段標題 */
+.section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--primary-color);
+    position: relative;
+    padding-bottom: 20px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary-color), var(--accent-color));
+    border-radius: 2px;
+}
+
+/* 行程部分 */
+.itinerary {
+    padding: 80px 20px;
+    background-color: var(--light-bg);
+}
+
+.itinerary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.itinerary-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    border-top: 5px solid var(--primary-color);
+}
+
+.itinerary-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.day-header h3 {
+    font-size: 1.5em;
+    color: var(--primary-color);
+}
+
+.date {
+    background: var(--accent-color);
+    color: var(--text-color);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.itinerary-card h4 {
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.activities {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.activities li {
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.95em;
+}
+
+.activities li:last-child {
+    border-bottom: none;
+}
+
+.tips {
+    background: #f0f8ff;
+    padding: 12px;
+    border-left: 4px solid var(--primary-color);
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+/* 景點部分 */
+.attractions {
+    padding: 80px 20px;
+    background: var(--white);
+}
+
+.attractions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.attraction-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+}
+
+.attraction-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.attraction-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.attraction-card h3 {
+    color: var(--primary-color);
+    padding: 20px 20px 10px;
+    font-size: 1.3em;
+}
+
+.attraction-card p {
+    padding: 0 20px;
+    color: #666;
+    font-size: 0.95em;
+    line-height: 1.6;
+}
+
+.rating {
+    padding: 15px 20px;
+    font-size: 1em;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+/* 住宿部分 */
+.hotels {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--light-bg) 0%, #e8f4f8 100%);
+}
+
+.hotels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.hotel-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.hotel-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hotel-header {
+    padding: 15px;
+    color: var(--white);
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.1em;
+}
+
+.hotel-header.luxury {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+}
+
+.hotel-header.mid-range {
+    background: linear-gradient(135deg, #4ecdc4, #44b3aa);
+}
+
+.hotel-header.budget {
+    background: linear-gradient(135deg, #ffd93d, #ffec99);
+    color: var(--text-color);
+}
+
+.hotel-card h3 {
+    color: var(--primary-color);
+    padding: 20px 20px 10px;
+    font-size: 1.2em;
+}
+
+.price {
+    padding: 0 20px;
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+.hotel-amenities {
+    list-style: none;
+    padding: 15px 20px;
+    flex-grow: 1;
+}
+
+.hotel-amenities li {
+    padding: 8px 0;
+    color: #666;
+}
+
+.booking-btn {
+    margin: 20px;
+    padding: 12px 30px;
+    background: var(--primary-color);
+    color: var(--white);
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: var(--transition);
+    font-size: 1em;
+}
+
+.booking-btn:hover {
+    background: #004d6d;
+    transform: scale(1.05);
+}
+
+/* 實用資訊部分 */
+.practical-info {
+    padding: 80px 20px;
+    background: var(--light-bg);
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+}
+
+.info-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    background: linear-gradient(135deg, #f0f8ff, #e8f4f8);
+}
+
+.info-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.3em;
+}
+
+.info-card ul {
+    list-style: none;
+}
+
+.info-card li {
+    padding: 8px 0;
+    color: #666;
+    border-bottom: 1px solid #eee;
+}
+
+.info-card li:last-child {
+    border-bottom: none;
+}
+
+/* 聯絡部分 */
+.contact {
+    padding: 80px 20px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #0088aa 100%);
+    color: var(--white);
+}
+
+.contact-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+}
+
+.contact-form {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--white);
+    font-size: 1em;
+    transition: var(--transition);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.2);
+    border-color: var(--accent-color);
+    box-shadow: 0 0 10px rgba(255, 217, 61, 0.3);
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.submit-btn:hover {
+    background: #f9c74f;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info h3 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    margin-bottom: 15px;
+    font-size: 1.05em;
+    line-height: 1.8;
+}
+
+.social-links {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+.social-icon {
+    display: inline-block;
+    padding: 10px 20px;
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 25px;
+    transition: var(--transition);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.social-icon:hover {
+    background: var(--accent-color);
+    color: var(--text-color);
+    border-color: var(--accent-color);
+}
+
+/* 頁腳 */
+.footer {
+    background: #222;
+    color: var(--white);
+    text-align: center;
+    padding: 30px 20px;
+}
+
+.footer p {
+    margin: 5px 0;
+}
+
+/* 響應式設計 */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: absolute;
+        top: 70px;
+        left: -100%;
+        flex-direction: column;
+        background-color: var(--primary-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        gap: 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-link::after {
+        display: none;
+    }
+
+    .hero-content h2 {
+        font-size: 2.2em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    .section-title {
+        font-size: 2em;
+    }
+
+    .itinerary-grid,
+    .attractions-grid,
+    .hotels-grid,
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-content {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-form,
+    .contact-info {
+        padding: 20px;
+    }
+
+    .itinerary,
+    .attractions,
+    .hotels,
+    .practical-info,
+    .contact {
+        padding: 50px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.3em;
+    }
+
+    .navbar-container {
+        height: 60px;
+    }
+
+    .hero-content h2 {
+        font-size: 1.8em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .cta-button {
+        padding: 12px 30px;
+        font-size: 1em;
+    }
+
+    .section-title {
+        font-size: 1.5em;
+        margin-bottom: 30px;
+    }
+
+    .itinerary-card,
+    .attraction-card,
+    .hotel-card,
+    .info-card {
+        padding: 20px;
+    }
+
+    .social-links {
+        flex-direction: column;
+    }
+
+    .social-icon {
+        width: 100%;
+        text-align: center;
+    }
+}
